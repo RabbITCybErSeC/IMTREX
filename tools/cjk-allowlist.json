@@ -1,0 +1,137 @@
+{
+  "_comment": "CJK occurrences that must stay by design. Every entry needs a reason. Regexes use \\uXXXX escapes so this file stays ASCII-clean itself.",
+  "entries": [
+    {
+      "path": "db/intercept.go",
+      "line": "\\[\\u6a21\\u578b\\]",
+      "reason": "Legacy [model] reason prefix matched alongside [model]; historical DB rows carry it and must still classify as 'model'."
+    },
+    {
+      "path": "db/schema.sql",
+      "line": "\\[\\u6a21\\u578b\\]",
+      "reason": "Same legacy prefix in the classification CASE; only pre-translation rows match it."
+    },
+    {
+      "path": "db/task_archives_restore.go",
+      "line": "\\[\\u6a21\\u578b\\]",
+      "reason": "Same legacy prefix so archives written before the translation restore and classify correctly."
+    },
+    {
+      "path": "web/src/components/approval-records.tsx",
+      "line": "\\u6a21\\u578b\\\\?\\]",
+      "reason": "Frontend matching/display of the legacy [model] prefix for historical approval records (plain and regex-escaped forms)."
+    },
+    {
+      "path": "web/src/lib/mock/data.ts",
+      "line": "\\u6a21\\u578b\\\\?\\]",
+      "reason": "Mock approval rows simulating legacy [model] verdicts; the prefix is the data the detection logic must match."
+    },
+    {
+      "path": "web/src/lib/mock/handler.ts",
+      "line": "\\u6a21\\u578b\\\\?\\]",
+      "reason": "Mock backend's legacy [model] verdict detection, mirroring the real handler."
+    },
+    {
+      "path": "web/src/lib/types.ts",
+      "line": "\\[\\u6a21\\u578b\\]",
+      "reason": "Field comment documenting that model verdicts carry the legacy [model] prefix."
+    },
+    {
+      "path": "README.md",
+      "line": "\\[\\u6a21\\u578b\\]",
+      "reason": "README documentation of the deliberately retained legacy prefix."
+    },
+    {
+      "path": "db/company_scope.go",
+      "line": "\\u5907\\u6848|ContainsAny|\\u4eacICP\\u5907",
+      "reason": "ICP filing detection: the literal filing keyword and fullwidth punctuation variants are the data being matched; translating them would break detection of real ICP numbers."
+    },
+    {
+      "path": "web/src/lib/company-scope.ts",
+      "line": "\\u5907\\u6848",
+      "reason": "Frontend ICP detection regex; the keyword is the data being matched."
+    },
+    {
+      "path": "web/src/components/scope-text-editor.tsx",
+      "line": "\\u4eacICP\\u5907",
+      "reason": "Placeholder example of a real-world ICP filing number; the example is the point."
+    },
+    {
+      "path": "web/src/app/(main)/function/tasks/detail/_tabs/overview-tab.tsx",
+      "line": "\\u4eacICP\\u5907",
+      "reason": "Help text example of a real-world ICP filing number."
+    },
+    {
+      "path": "web/src/lib/mock/data.ts",
+      "line": "\\u4eacICP\\u5907",
+      "reason": "Mock ICP value for the demo build; realistic example data."
+    },
+    {
+      "path": "db/company_scope_test.go",
+      "reason": "ICP parsing fixtures intentionally stay Chinese: they test parsing of real ICP filing numbers (see the file header comment); the values are the test data, not prose."
+    },
+    {
+      "path": "db/task_assets_test.go",
+      "line": "\\u4eac ICP",
+      "reason": "ICP filing number fixture; the value is the test data."
+    },
+    {
+      "path": "server/assets_scope_test.go",
+      "line": "\\u4eac ICP\\u5907",
+      "reason": "ICP filing number fixture; the value is the test data."
+    },
+    {
+      "path": "agent/blackboard_inheritance_test.go",
+      "line": "\\u4eac ICP \\u5907",
+      "reason": "ICP filing number fixture; the value is the test data."
+    },
+    {
+      "path": "server/auth_test.go",
+      "line": "\\u5bc6\\u7801",
+      "reason": "Password-length fixtures prove multi-byte characters are counted as characters, not bytes."
+    },
+    {
+      "path": "server/skill_upload_test.go",
+      "reason": "Skill-upload fixtures intentionally use Chinese names (including GBK-encoded zip entries) to prove non-UTF-8 and non-ASCII handling; the whole file is the fixture."
+    },
+    {
+      "path": "web/src/lib/chat-mentions.test.mjs",
+      "reason": "Mention-tokenizer fixtures prove CJK label/query handling (mention parsing on Chinese text); the fixtures are the point."
+    },
+    {
+      "path": "agent/provider.go",
+      "line": "\\u4f59\\u989d\\u4e0d\\u8db3",
+      "reason": "Quota-exhausted markers Chinese LLM gateways return; matched against provider error text, translating them would break quota detection."
+    },
+    {
+      "path": "agent/provider_quota_test.go",
+      "line": "\\u4f59\\u989d\\u4e0d\\u8db3",
+      "reason": "Quota-marker fixture mirroring the real gateway error text."
+    },
+    {
+      "path": "server/task_llm_test.go",
+      "line": "\\u4f59\\u989d\\u4e0d\\u8db3",
+      "reason": "Quota-marker fixture mirroring the real gateway error text."
+    },
+    {
+      "path": "web/src/app/(main)/system/notify/_components/channel-fields.ts",
+      "line": "split\\(/\\[",
+      "reason": "The fullwidth comma in the split() character class accepts Chinese commas in operator input; it is functional data."
+    },
+    {
+      "path": "web/src/app/(main)/system/notify/page.tsx",
+      "line": "split\\(/\\[",
+      "reason": "Same fullwidth-comma split used by the keyword parser."
+    },
+    {
+      "path": "skills/api-recon/scripts/preload.js",
+      "line": "NEGATIVE_RE",
+      "reason": "Login-gate detection regex must match Chinese login/unauthorized wording on target pages."
+    },
+    {
+      "path": "skills/api-recon/reference.md",
+      "line": "\\u672a\\u767b\\u5f55",
+      "reason": "Reference grep command must match Chinese 'not logged in' wording on target pages."
+    }
+  ]
+}
