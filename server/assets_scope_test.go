@@ -13,6 +13,9 @@ import (
 	"github.com/Autumn-27/artex/db"
 )
 
+// The ICP value in the fixture below stays Chinese on purpose: an ICP filing number is a Chinese
+// regulatory identifier, and company_scope.go detects one by the full-width dot and the characters
+// it contains, so an ASCII stand-in would never be recognized as an ICP scope.
 func TestCompanyScopeInputsAcceptStructuredAndLegacyRules(t *testing.T) {
 	var inputs companyScopeInputs
 	if err := json.Unmarshal([]byte(`[
@@ -137,7 +140,7 @@ func TestCompanyScopeHTTPErrorClassificationAndBounds(t *testing.T) {
 		body, err := json.Marshal(map[string]any{
 			"name": "Oversized Scope",
 			"scope": []map[string]string{{
-				"kind": "keyword", "value": strings.Repeat("界", db.MaxCompanyScopeRawRunes+1),
+				"kind": "keyword", "value": strings.Repeat("é", db.MaxCompanyScopeRawRunes+1),
 			}},
 		})
 		if err != nil {
