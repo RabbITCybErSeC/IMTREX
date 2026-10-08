@@ -1,0 +1,15 @@
+# Run the English build instead of upstream's Chinese image.
+#
+# Copy this file to docker-compose.override.yml -- docker compose merges it over
+# docker-compose.yml automatically, so the tracked compose file stays untouched:
+#
+#   cp docker-compose.override.yml.example docker-compose.override.yml
+#   docker compose up -d
+#
+# Build the image first; see DOCKER.md.
+services:
+  artex:
+    image: artex-en:latest
+    # Local image only: `docker compose pull` cannot fetch it, and compose would
+    # otherwise try to pull before starting.
+    pull_policy: never
