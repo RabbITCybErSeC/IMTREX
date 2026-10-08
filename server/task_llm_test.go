@@ -117,6 +117,8 @@ func TestIsQuotaExhaustedError(t *testing.T) {
 		`billing_hard_limit_reached`,
 		`billing_not_active`,
 		`HTTP status 402 Payment Required`,
+		// Kept in Chinese on purpose: this is the literal body a Chinese LLM gateway returns when an
+		// account runs out of credit, and agent.IsQuotaExhaustedMessage matches exactly these characters.
 		`账户余额不足，请充值`,
 		`credit balance is too low`,
 	}
