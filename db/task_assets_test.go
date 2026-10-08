@@ -26,6 +26,7 @@ func TestRegisterTaskAssetScopesCreatesAssetsAndPersistsTextScope(t *testing.T) 
 		{Kind: "domain", Value: domain},
 		{Kind: "ip", Value: ip},
 		{Kind: "cidr", Value: "198.51.100.0/24"},
+		// An ICP filing number is a Chinese regulatory identifier, so this fixture stays in its real form.
 		{Kind: "icp", Value: " 京 ICP 备 12345678 号-1 "},
 		{Kind: "keyword", Value: " Acme   Security "},
 	}
@@ -104,7 +105,7 @@ func TestTaskAssetAttachDetachPreservesGlobalAssetAndAnchors(t *testing.T) {
 	}
 	t.Cleanup(func() { _, _ = d.Assets().DeleteByIDs([]int64{assetID}) })
 
-	mutation, err := d.Assets().AttachAssetsToTask(task.ID, []int64{assetID, assetID}, "授权资产清单第 3 项")
+	mutation, err := d.Assets().AttachAssetsToTask(task.ID, []int64{assetID, assetID}, "item 3 of the authorized asset list")
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -115,7 +116,7 @@ func TestTaskAssetAttachDetachPreservesGlobalAssetAndAnchors(t *testing.T) {
 	if err != nil || len(assets) != 1 {
 		t.Fatalf("task assets=%+v err=%v", assets, err)
 	}
-	if assets[0].TaskSource != "manual" || assets[0].TaskSourceSummary != "授权资产清单第 3 项" {
+	if assets[0].TaskSource != "manual" || assets[0].TaskSourceSummary != "item 3 of the authorized asset list" {
 		t.Fatalf("unexpected provenance: %+v", assets[0])
 	}
 
@@ -171,7 +172,7 @@ func TestIntentAssetsIncludesDirectSourceProvenance(t *testing.T) {
 		t.Fatal(err)
 	}
 	nodeID := intentID
-	if err := d.Assets().SetTaskAssetSource(source.ID, assetID, "agent", "Worker 通过 insert_assets 登记", &nodeID); err != nil {
+	if err := d.Assets().SetTaskAssetSource(source.ID, assetID, "agent", "registered by a worker through insert_assets", &nodeID); err != nil {
 		t.Fatal(err)
 	}
 
