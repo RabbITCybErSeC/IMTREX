@@ -1,6 +1,6 @@
 <div align="center">
 
-# ARTEX
+# IMTREX
 
 AI-driven autonomous penetration testing system (Go backend + Next.js frontend)
 
@@ -13,10 +13,11 @@ AI-driven autonomous penetration testing system (Go backend + Next.js frontend)
 
 ## About this fork
 
-This is an **English translation** of [Autumn-27/ARTEX](https://github.com/Autumn-27/ARTEX). All Chinese
-text — the UI, the Go backend, the LLM prompts, the comments, the scripts and the documentation — has
-been translated; the behaviour is unchanged. Licensing, copyright and the author's terms of use are
-inherited unchanged from upstream (see [License and disclaimer](#license-and-disclaimer)).
+IMTREX is based on [Autumn-27/ARTEX](https://github.com/Autumn-27/ARTEX). This branch ports English
+translations from [KbaHaxor/ARTEX-EN](https://github.com/KbaHaxor/ARTEX-EN) onto the newer 0.3.15
+code. The English-language port is under review: some recently added comments, historical change
+logs, and compatibility-sensitive strings may remain untranslated. Licensing, copyright, and
+the original author's terms are inherited from upstream (see [License and disclaimer](#license-and-disclaimer)).
 
 > ⚠️ **The published Docker image is the upstream Chinese build.** `autumn27/artex` is built by
 > upstream's CI and has nothing to do with this translation, so `docker compose up -d` and the
@@ -96,8 +97,8 @@ Asset data can be synced straight from [ScopeSentry](https://github.com/Autumn-2
 ### Option 1: one-click install script (recommended)
 
 ```bash
-git clone https://github.com/Autumn-27/ARTEX.git
-cd ARTEX
+git clone https://github.com/RabbITCybErSeC/IMTREX.git
+cd IMTREX
 ./install.sh
 ```
 
@@ -111,8 +112,8 @@ Once installed, open **http://localhost:8787** (the first visit goes to `/setup`
 ### Option 2: Docker Compose (manual)
 
 ```bash
-git clone https://github.com/Autumn-27/ARTEX.git
-cd ARTEX
+git clone https://github.com/RabbITCybErSeC/IMTREX.git
+cd IMTREX
 cp .env.example .env          # set POSTGRES_PASSWORD, optionally ANTHROPIC_API_KEY
 docker compose up -d          # pulls the autumn27/artex image + postgres
 # -> http://localhost:8787
@@ -275,7 +276,7 @@ After you click "Update": the release package for the current platform is downlo
 ### Option 2: one-click update script
 
 ```bash
-cd ARTEX
+cd IMTREX
 ./update.sh
 ```
 
@@ -287,7 +288,7 @@ The script optionally runs `git pull` first, then lets you choose **(1) Docker u
 ### Option 3: Docker Compose (manual)
 
 ```bash
-cd ARTEX
+cd IMTREX
 git pull                       # update compose / scripts (optional)
 # To pin a version: set ARTEX_TAG=v0.2.0 in .env; otherwise latest is used
 docker compose pull artex
