@@ -24,6 +24,7 @@ func TestIsQuotaExhaustedMessage(t *testing.T) {
 		`You exceeded your current quota, please check your plan and billing details.`,
 		`billing_not_active`,
 		`credit balance is too low`,
+		// A real Chinese gateway's out-of-credit body; it must stay in Chinese because that is the literal text those providers return.
 		`账户余额不足，请充值`,
 	}
 	for _, message := range positive {
