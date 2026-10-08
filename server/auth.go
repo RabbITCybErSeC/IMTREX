@@ -226,7 +226,7 @@ func (s *Server) authChangePassword(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	if req.NewPassword == "" {
-		writeErr(w, 400, "新Password cannot be empty")
+		writeErr(w, 400, "New password cannot be empty")
 		return
 	}
 	if msg := validatePassword(req.NewPassword); msg != "" {
