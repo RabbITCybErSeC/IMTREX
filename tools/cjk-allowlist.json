@@ -96,7 +96,22 @@
     },
     {
       "path": "web/src/lib/chat-mentions.test.mjs",
-      "reason": "Mention-tokenizer fixtures prove CJK label/query handling (mention parsing on Chinese text); the fixtures are the point."
+      "reason": "Mention-tokenizer fixtures prove CJK content handling (mentions with Chinese titles, queries and surrounding text); the fixtures are the point."
+    },
+    {
+      "path": "CHANGELOG.md",
+      "line": "\\u53c2\\u8003/\\u8bf4\\u660e",
+      "reason": "Changelog entry about Chinese-filename support in skill zips; the Chinese filename is the example the fix is about."
+    },
+    {
+      "path": "CHANGELOG.md",
+      "line": "\\u4e2d\\u6587\\u6280\\u80fd",
+      "reason": "Changelog entry about Chinese frontmatter values in skill uploads; the example value is the subject of the fix."
+    },
+    {
+      "path": "CHANGELOG.md",
+      "line": "\\[\\u6a21\\u578b\\]",
+      "reason": "Changelog entry documenting the deliberately retained legacy [model] prefix for model-fallback verdicts."
     },
     {
       "path": "agent/provider.go",

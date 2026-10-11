@@ -1,6 +1,8 @@
 # CJK-to-English translation plan
 
-Status: active. Baseline measured with `tools/find_cjk.py` on `main` (`a5047c3`).
+Status: **complete** (pending review/commit). Baseline measured with `tools/find_cjk.py` on
+`main` (`a5047c3`); the working tree now scans clean — 0 unallowlisted violations, 118 allowed
+occurrences, all with reasons in `tools/cjk-allowlist.json`.
 
 ## 1. Objective and definition of done
 
@@ -248,6 +250,22 @@ No code depends on it; lowest risk, lowest urgency. Two options:
 2. Add the CI gate workflow (section 2).
 3. Update the README "About this fork" section: drop the review caveat, note the gate.
 4. Final `--check` on a clean checkout.
+
+Close-out notes (done):
+
+- Allowlist audit: all pre-existing entries still match a live occurrence; new entries added
+  for the CHANGELOG Chinese-filename examples and its `[模型]` mention; <!-- cjk-allow: names the prefix under audit -->
+  the `chat-mentions.test.mjs` reason updated to describe CJK content fixtures (kind labels
+  are now English, matching `server/chat_mentions.go`).
+- `web/src/lib/chat-mentions.ts` labels were aligned with the backend parser (English kind
+  labels) and its test updated to match — the Chinese tokens the frontend previously emitted
+  were already dead against the translated backend.
+- Scanner hardening along the way: `--include-untracked` now appends untracked files instead
+  of replacing the tracked list, and index entries missing from the worktree are skipped.
+- CI gate added at `.github/workflows/cjk-check.yml` (`python3 tools/find_cjk.py --check`).
+- `docs/漏洞流量证据.md` deleted (superseded by `docs/vulnerability-traffic-evidence.md`). <!-- cjk-allow: names the deleted file -->
+- CHANGELOG.md translated through 0.3.2; references to the (never imported) upstream design
+  doc now point at `docs/LLM-retry-design.md`.
 
 ## 9. Per-batch workflow
 

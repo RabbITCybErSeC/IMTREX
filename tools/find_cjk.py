@@ -166,7 +166,7 @@ def file_level_allowed(entries, rel, text):
 
 
 def list_files_git(root, include_untracked):
-    args = ["git", "-C", root, "ls-files", "-z"]
+    args = ["git", "-C", root, "ls-files", "-z", "--cached"]
     if include_untracked:
         args += ["--others", "--exclude-standard"]
     try:
@@ -386,6 +386,9 @@ def main():
         source = "git ls-files"
         if paths is None:
             paths, source = list_files_walk(root), "directory walk (git unavailable)"
+    # Drop index entries that no longer exist in the worktree (a file deleted
+    # but not yet committed): the scan reports the tree as it stands now.
+    paths = [p for p in paths if os.path.exists(os.path.join(root, p))]
     paths = sorted(set(apply_path_filter(paths, args.path)))
 
     allowlist_path = args.allowlist or os.path.join(root, "tools", "cjk-allowlist.json")

@@ -15,9 +15,10 @@ AI-driven autonomous penetration testing system (Go backend + Next.js frontend)
 
 IMTREX is based on [Autumn-27/ARTEX](https://github.com/Autumn-27/ARTEX). This branch ports English
 translations from [KbaHaxor/ARTEX-EN](https://github.com/KbaHaxor/ARTEX-EN) onto the newer 0.3.15
-code. The English-language port is under review: some recently added comments, historical change
-logs, and compatibility-sensitive strings may remain untranslated. Licensing, copyright, and
-the original author's terms are inherited from upstream (see [License and disclaimer](#license-and-disclaimer)).
+code. The port is complete and enforced in CI (`tools/find_cjk.py --check`); see
+[docs/translation-plan.md](docs/translation-plan.md) for the process and the rationale for the few
+strings kept in Chinese. Licensing, copyright, and the original author's terms are inherited from
+upstream (see [License and disclaimer](#license-and-disclaimer)).
 
 > ⚠️ **The published Docker image is the upstream Chinese build.** `autumn27/artex` is built by
 > upstream's CI and has nothing to do with this translation, so `docker compose up -d` and the
@@ -26,7 +27,8 @@ the original author's terms are inherited from upstream (see [License and discla
 > [Build on Windows](#option-4-build-on-windows) · [build a single binary](#option-5-build-a-single-binary-from-source-linux--macos) ·
 > [build your own Docker image](#option-6-build-your-own-docker-image-english) (**[full guide: DOCKER.md](DOCKER.md)**).
 
-A few Chinese strings are kept deliberately, each with a comment explaining why — ICP filing numbers
+A few Chinese strings are kept deliberately, each listed with a reason in
+[`tools/cjk-allowlist.json`](tools/cjk-allowlist.json) and enforced by the CI gate — ICP filing numbers
 and their detection, the legacy `[模型]` reason prefix (matched alongside the new `[model]` so rows
 written by an older database still classify correctly), the quota-exhausted markers Chinese LLM
 gateways return, the full-width comma in `split()` character classes, and the test fixtures whose
