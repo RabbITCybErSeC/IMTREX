@@ -1,0 +1,17 @@
+name: cjk-check
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Scan for unallowlisted CJK / non-UTF-8 content
+        run: python3 tools/find_cjk.py --check

@@ -24,8 +24,10 @@ web/next-env.d.ts
 *.swp
 *.swo
 
-# docs
-/docs/
+# docs (upstream keeps this directory local-only; the files below are tracked by this fork)
+/docs/*
+!/docs/translation-plan.md
+!/docs/vulnerability-traffic-evidence.md
 
 # os
 .DS_Store
